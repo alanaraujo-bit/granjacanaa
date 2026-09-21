@@ -17,7 +17,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(function Field(
   const auto = useId();
   const inputId = id ?? auto;
   return (
-    <div className={className}>
+    <div className={`min-w-0 ${className}`}>
       <label htmlFor={inputId} className="mb-1.5 block text-[13px] font-semibold text-ink-2">
         {label}
       </label>
@@ -54,7 +54,7 @@ export function TextArea({ label, hint, className = "", id, ...rest }: TextAreaP
   const auto = useId();
   const inputId = id ?? auto;
   return (
-    <div className={className}>
+    <div className={`min-w-0 ${className}`}>
       <label htmlFor={inputId} className="mb-1.5 block text-[13px] font-semibold text-ink-2">
         {label}
       </label>
