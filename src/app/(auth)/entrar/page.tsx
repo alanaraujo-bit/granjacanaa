@@ -13,6 +13,16 @@ import { DEMO_USER, useStore } from "@/lib/store";
 import { maskPhone } from "@/lib/format";
 import { useToast } from "@/components/ui/Toast";
 
+
+/** Leva o foco ao primeiro campo inválido após a validação. */
+function focusFirstInvalid() {
+  window.setTimeout(() => {
+    const el = document.querySelector<HTMLElement>('[aria-invalid="true"]');
+    el?.focus();
+    el?.scrollIntoView({ block: "center", behavior: "smooth" });
+  }, 0);
+}
+
 export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
@@ -31,7 +41,10 @@ export default function LoginPage() {
     if (phone.replace(/\D/g, "").length < 10) errs.phone = "Digite um celular com DDD.";
     if (password.length < 6) errs.password = "A senha tem pelo menos 6 caracteres.";
     setErrors(errs);
-    if (Object.keys(errs).length) return;
+    if (Object.keys(errs).length) {
+      focusFirstInvalid();
+      return;
+    }
 
     setLoading(true);
     window.setTimeout(() => {

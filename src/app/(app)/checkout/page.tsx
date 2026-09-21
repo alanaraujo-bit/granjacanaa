@@ -39,6 +39,16 @@ const PAYMENTS: { id: PaymentMethod; Icon: typeof QrCode; title: string; text: s
   { id: "cartao", Icon: CreditCard, title: "Cartão na entrega", text: "Maquininha: débito ou crédito" },
 ];
 
+
+/** Leva o foco ao primeiro campo inválido após a validação. */
+function focusFirstInvalid() {
+  window.setTimeout(() => {
+    const el = document.querySelector<HTMLElement>('[aria-invalid="true"]');
+    el?.focus();
+    el?.scrollIntoView({ block: "center", behavior: "smooth" });
+  }, 0);
+}
+
 export default function CheckoutPage() {
   const router = useRouter();
   const { toast } = useToast();
@@ -98,6 +108,7 @@ export default function CheckoutPage() {
   const next = () => {
     if (step === 0 && !validateStep0()) {
       toast({ kind: "error", title: "Faltou preencher alguns campos" });
+      focusFirstInvalid();
       return;
     }
     if (step === 1 && draft.delivery.day === "hoje" && !todayAvailable) {
@@ -175,7 +186,7 @@ export default function CheckoutPage() {
                     setErrors({});
                     toast({ kind: "info", title: "Dados de exemplo preenchidos" });
                   }}
-                  className="pressable inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-gold-soft px-3 text-[12.5px] font-bold text-gold-ink"
+                  className="pressable inline-flex h-10 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-gold-soft px-3.5 text-[12.5px] font-bold text-gold-ink"
                 >
                   <Wand2 size={13} strokeWidth={2.5} /> Preencher exemplo
                 </button>

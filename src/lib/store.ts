@@ -230,7 +230,10 @@ export const useStore = create<State>()(
           cart: [],
           lastOrderId: order.id,
           draft: { ...s.draft, notes: "", changeFor: "" },
-          user: s.user ?? { name: s.draft.name, phone: s.draft.phone, mode: "guest" },
+          user:
+            s.user?.mode === "account"
+              ? s.user
+              : { name: s.draft.name, phone: s.draft.phone, email: s.user?.email, mode: "guest" },
           onboardingDone: true,
         });
         return order;

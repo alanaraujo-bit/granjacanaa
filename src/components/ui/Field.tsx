@@ -32,14 +32,19 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(function Field(
           id={inputId}
           className="h-full min-w-0 flex-1 bg-transparent text-[16px] text-ink outline-none placeholder:text-ink-3"
           aria-invalid={!!error}
+          aria-describedby={error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined}
           {...rest}
         />
         {suffix && <span className="shrink-0 text-ink-3">{suffix}</span>}
       </div>
       {error ? (
-        <p className="mt-1.5 text-[13px] font-medium text-danger">{error}</p>
+        <p id={`${inputId}-error`} role="alert" className="mt-1.5 text-[13px] font-medium text-danger">
+          {error}
+        </p>
       ) : hint ? (
-        <p className="mt-1.5 text-[13px] text-ink-3">{hint}</p>
+        <p id={`${inputId}-hint`} className="mt-1.5 text-[13px] text-ink-3">
+          {hint}
+        </p>
       ) : null}
     </div>
   );

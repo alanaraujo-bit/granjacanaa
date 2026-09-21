@@ -58,7 +58,7 @@ export function Price({
       } ${className}`}
       style={{ fontSize: size }}
     >
-      <span style={{ fontSize: size * 0.7, marginRight: 2 }}>R$</span>
+      <span style={{ fontSize: Math.max(11, size * 0.7), marginRight: 2 }}>R$</span>
       {int}
       <span style={{ fontSize: size * 0.8 }}>,{cents}</span>
     </span>
@@ -83,7 +83,7 @@ export function QtyStepper({
   size?: "sm" | "md" | "lg";
   allowRemove?: boolean;
 }) {
-  const h = size === "lg" ? 52 : size === "md" ? 48 : 44;
+  const h = size === "lg" ? 52 : size === "md" ? 48 : 46;
   const isMin = value <= min;
   return (
     <div

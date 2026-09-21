@@ -302,7 +302,7 @@ export default function OrderTrackingPage() {
           <button
             type="button"
             onClick={() => advanceStage(order.id)}
-            className="pressable inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full border border-line-strong bg-surface px-3 text-[12.5px] font-bold text-ink-2"
+            className="pressable inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border border-line-strong bg-surface px-3.5 text-[12.5px] font-bold text-ink-2"
           >
             <FastForward size={14} /> Avançar
           </button>

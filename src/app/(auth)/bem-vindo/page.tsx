@@ -110,7 +110,7 @@ export default function WelcomePage() {
             aria-selected={index === i}
             aria-label={`Slide ${i + 1}`}
             onClick={() => goTo(i)}
-            className="flex h-8 items-center px-1"
+            className="flex h-8 min-w-8 items-center justify-center px-1"
           >
             <span
               className="block h-2 rounded-full transition-all duration-300"

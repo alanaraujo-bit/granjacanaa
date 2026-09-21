@@ -177,7 +177,7 @@ export default function OrderConfirmedPage() {
             <button
               type="button"
               onClick={copyPix}
-              className="pressable inline-flex h-9 items-center gap-1.5 rounded-full bg-leaf px-3 text-[13px] font-bold text-cream"
+              className="pressable inline-flex h-10 items-center gap-1.5 rounded-full bg-leaf px-3.5 text-[13px] font-bold text-cream"
             >
               {copied ? <Check size={14} strokeWidth={3} /> : <Copy size={14} strokeWidth={2.5} />}
               {copied ? "Copiado" : "Copiar"}

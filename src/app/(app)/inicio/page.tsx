@@ -143,7 +143,7 @@ export default function HomePage() {
               role="tab"
               aria-selected={active}
               onClick={() => setCategory(c.id)}
-              className={`pressable h-9 shrink-0 rounded-full border px-4 text-[14px] font-semibold transition-colors ${
+              className={`pressable h-10 shrink-0 rounded-full border px-4 text-[14px] font-semibold transition-colors ${
                 active
                   ? "border-leaf bg-leaf text-cream"
                   : "border-line-strong bg-surface text-ink-2 hover:bg-surface-2"

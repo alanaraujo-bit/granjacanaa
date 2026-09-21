@@ -12,6 +12,16 @@ import { DEMO_USER, useStore } from "@/lib/store";
 import { firstName, maskPhone } from "@/lib/format";
 import { useToast } from "@/components/ui/Toast";
 
+
+/** Leva o foco ao primeiro campo inválido após a validação. */
+function focusFirstInvalid() {
+  window.setTimeout(() => {
+    const el = document.querySelector<HTMLElement>('[aria-invalid="true"]');
+    el?.focus();
+    el?.scrollIntoView({ block: "center", behavior: "smooth" });
+  }, 0);
+}
+
 export default function SignupPage() {
   const router = useRouter();
   const { toast } = useToast();
@@ -33,7 +43,10 @@ export default function SignupPage() {
     if (!/^\S+@\S+\.\S+$/.test(form.email)) errs.email = "Digite um e-mail válido.";
     if (form.password.length < 6) errs.password = "Use pelo menos 6 caracteres.";
     setErrors(errs);
-    if (Object.keys(errs).length) return;
+    if (Object.keys(errs).length) {
+      focusFirstInvalid();
+      return;
+    }
 
     setLoading(true);
     window.setTimeout(() => {
