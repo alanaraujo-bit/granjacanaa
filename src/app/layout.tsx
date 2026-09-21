@@ -66,7 +66,7 @@ const DIRECTION = `
   FIRST VIEWPORT: splash verde com a logo real em círculo; boas-vindas com trio de ovos na
   palha em tamanho de herói e três ações empilhadas — "Explorar o app" (dourado) é a primária.
   FORM: banca da granja, 3ª da lista ordenada; seed ae1130a7. Motion: a placa de preço balança
-  uma vez ao entrar; o carrinho sobe como gaveta; a timeline de entrega cresce com o tempo real.
+  uma vez ao entrar; a barra do carrinho sobe como gaveta; a timeline de entrega cresce com o tempo real.
   FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review,
   the verdict, DESIGN.md, and every shipping raster carrying its provenance.
 `;

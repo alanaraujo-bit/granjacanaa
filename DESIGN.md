@@ -18,7 +18,7 @@ Registro do mundo visual construído (ground truth do código, não intenção).
 | `--leaf-soft` / `--leaf-wash` | `#e1efe1` / `#eef5ec` | pílula da aba ativa, seleção em opções |
 | `--gold` / `--gold-deep` / `--gold-ink` | `#f2c14e` / `#e0ab2e` / `#6b4e0a` | **ação primária** (botão dourado com texto `leaf-ink`), títulos sobre verde, etapa atual |
 | `--gold-soft` | `#fbefc9` | chips "mais pedido", bloco Pix |
-| `--ink` / `--ink-2` / `--ink-3` | `#26201a` / `#5e554a` / `#8c8273` | texto (marrom-casca) |
+| `--ink` / `--ink-2` / `--ink-3` | `#26201a` / `#5e554a` / `#6f665a` | texto (marrom-casca) |
 | `--egg` / `--egg-soft` | `#c98b57` / `#f6e6d3` | acento de ovo, chip "novidade" |
 | `--danger` / `--danger-soft` | `#c0392b` / `#fbe4e1` | erro |
 

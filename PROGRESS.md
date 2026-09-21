@@ -26,9 +26,10 @@ Registro persistente de progresso e decisões. Atualizado continuamente para per
 - [x] PWA: manifest, ícones (192/512/maskable/apple), service worker (app shell), viewport-fit cover, safe areas, sem zoom/seleção
 - [x] Walkthrough completo no navegador (desktop e mobile) — fluxo validado ponta a ponta
 - [x] Deploy produção: https://granjacanaa.vercel.app (público) · push GitHub main
-- [ ] Detector impeccable + polimento final (lid da caixa x chip, espaçamentos)
-- [ ] DESIGN.md + README de apresentação
-- [ ] Revisão final (advisor) e deploy final
+- [x] Detector impeccable (limpo) + polimento (lid da caixa, transições, not-found)
+- [x] DESIGN.md + README de apresentação
+- [x] Revisão independente (agente crítico) — 17 achados, 15 corrigidos e deployados
+- [ ] Verdict pass do revisor + deploy final
 
 ## Notas técnicas
 - `.app-frame` (CSS sem layer) sobrescreve utilities de background — usar `style` inline quando precisar de fundo diferente no frame.
