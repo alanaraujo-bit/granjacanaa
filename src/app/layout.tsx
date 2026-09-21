@@ -39,9 +39,7 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
   },
-  other: {
-    "mobile-web-app-capable": "yes",
-  },
+  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
