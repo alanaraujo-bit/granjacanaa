@@ -31,36 +31,36 @@ export default function HomePage() {
 
   return (
     <main className="flex flex-col pb-24">
-      {/* toldo */}
-      <div className="awning awning-edge h-[calc(18px+var(--safe-top))] w-full" />
+      {/* toldo da banca */}
+      <div className="awning awning-edge h-[calc(40px+var(--safe-top))] w-full" />
 
       {/* saudação */}
-      <header className="flex items-center justify-between px-5 pt-5">
-        <div className="min-w-0">
-          {hydrated ? (
-            <>
-              <p className="text-[14px] font-semibold text-ink-2">{greeting()},</p>
-              <h1 className="truncate font-display text-[26px] font-bold leading-[1.05] tracking-[-0.01em] text-ink">
-                {user ? firstName(user.name) : "visitante"}
-              </h1>
-            </>
-          ) : (
-            <>
-              <Skeleton className="h-4 w-20" />
-              <Skeleton className="mt-2 h-7 w-36" />
-            </>
-          )}
-        </div>
+      <header className="flex items-center justify-between gap-3 px-5 pt-3">
+        <Link href="/perfil" className="pressable flex min-w-0 items-center gap-3" aria-label="Seu perfil">
+          <LogoMark size={46} />
+          <div className="min-w-0">
+            {hydrated ? (
+              <>
+                <p className="text-[13.5px] font-semibold leading-tight text-ink-2">{greeting()},</p>
+                <h1 className="truncate font-display text-[24px] font-bold leading-[1.05] tracking-[-0.01em] text-ink">
+                  {user ? firstName(user.name) : "visitante"}
+                </h1>
+              </>
+            ) : (
+              <>
+                <Skeleton className="h-4 w-20" />
+                <Skeleton className="mt-2 h-6 w-32" />
+              </>
+            )}
+          </div>
+        </Link>
         <Link
           href="/perfil"
-          className="pressable flex items-center gap-2 rounded-full border border-line bg-surface py-1.5 pl-3 pr-1.5 shadow-card"
+          className="pressable flex h-11 shrink-0 items-center gap-1.5 rounded-full border border-line bg-surface pl-3 pr-3.5 shadow-card"
           aria-label="Endereço de entrega"
         >
           <MapPin size={15} className="text-leaf" />
           <span className="text-[13px] font-semibold text-ink-2">Novo Horizonte</span>
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gold-soft font-display text-[12px] font-bold text-gold-ink">
-            {user ? firstName(user.name).charAt(0) : "V"}
-          </span>
         </Link>
       </header>
 

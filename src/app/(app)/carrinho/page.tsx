@@ -30,7 +30,7 @@ export default function CartPage() {
   const suggestions = PRODUCTS.filter((p) => !cart.some((c) => c.productId === p.id)).slice(0, 3);
 
   return (
-    <main className="flex min-h-dvh flex-col pb-40">
+    <main className="flex flex-1 flex-col pb-40">
       <TopBar
         title={
           <span className="flex items-baseline gap-2">

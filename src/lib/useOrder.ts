@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { autoStageFor, STAGE_AUTO_MS, useStore, type Order } from "./store";
+import { autoStageFor, autoStageTimes, STAGE_AUTO_MS, useStore, type Order } from "./store";
 
 export const STAGES = [
   {
@@ -42,7 +42,7 @@ export function useOrder(orderId: string | undefined) {
       const t = Date.now();
       setNow(t);
       const auto = autoStageFor(order, t);
-      if (auto > order.stage) syncStage(order.id, auto);
+      if (auto > order.stage) syncStage(order.id, auto, autoStageTimes(order));
     };
     tick();
     const id = window.setInterval(tick, 1000);
@@ -58,6 +58,10 @@ function stageProgress(order: Order, now: number) {
   const start = order.stageTimes[order.stage] ?? order.createdAt;
   const autoStart = order.createdAt + STAGE_AUTO_MS[order.stage];
   const autoEnd = order.createdAt + STAGE_AUTO_MS[order.stage + 1];
+  if (!Number.isFinite(autoEnd)) {
+    // última etapa automática: o entregador "a caminho" avança devagar e para em 90%
+    return Math.min(0.9, (now - start) / 180_000);
+  }
   const from = Math.max(start, autoStart);
   const span = Math.max(autoEnd - from, 5000);
   return Math.max(0, Math.min(1, (now - from) / span));

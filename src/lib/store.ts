@@ -105,8 +105,12 @@ export const emptyDraft = (): CheckoutDraft => ({
   notes: "",
 });
 
-/** Tempos (ms) desde a criação em que cada etapa é alcançada automaticamente. */
-export const STAGE_AUTO_MS = [0, 25_000, 70_000, 135_000] as const;
+/**
+ * Tempos (ms) desde a criação em que cada etapa é alcançada automaticamente.
+ * A entrega ("Entregue") não acontece sozinha: só pelo controle de demonstração.
+ */
+export const STAGE_AUTO_MS = [0, 25_000, 70_000, Number.POSITIVE_INFINITY] as const;
+export const AUTO_MAX_STAGE = 2;
 
 interface State {
   hydrated: boolean;
@@ -126,7 +130,7 @@ interface State {
   setDraft: (patch: Partial<CheckoutDraft>) => void;
   fillDemoDraft: () => void;
   placeOrder: () => Order | null;
-  syncStage: (orderId: string, stage: number) => void;
+  syncStage: (orderId: string, stage: number, times?: (number | null)[]) => void;
   advanceStage: (orderId: string) => void;
   resetDemo: () => void;
 }
@@ -226,18 +230,20 @@ export const useStore = create<State>()(
           cart: [],
           lastOrderId: order.id,
           draft: { ...s.draft, notes: "", changeFor: "" },
+          user: s.user ?? { name: s.draft.name, phone: s.draft.phone, mode: "guest" },
+          onboardingDone: true,
         });
         return order;
       },
 
-      syncStage: (orderId, stage) =>
+      syncStage: (orderId, stage, times) =>
         set((s) => ({
           orders: s.orders.map((o) => {
             if (o.id !== orderId || stage <= o.stage) return o;
             const stageTimes = [...o.stageTimes];
             const now = Date.now();
             for (let i = o.stage + 1; i <= stage; i++) {
-              if (stageTimes[i] == null) stageTimes[i] = now;
+              if (stageTimes[i] == null) stageTimes[i] = times?.[i] ?? now;
             }
             return { ...o, stage, stageTimes };
           }),
@@ -299,8 +305,13 @@ export function deliveryFeeFor(subtotal: number) {
 export function autoStageFor(order: Order, now = Date.now()) {
   const elapsed = now - order.createdAt;
   let stage = 0;
-  for (let i = 0; i < STAGE_AUTO_MS.length; i++) {
+  for (let i = 0; i <= AUTO_MAX_STAGE; i++) {
     if (elapsed >= STAGE_AUTO_MS[i]) stage = i;
   }
   return Math.max(stage, order.stage);
+}
+
+/** Instantes em que as etapas automáticas foram (ou seriam) alcançadas. */
+export function autoStageTimes(order: Order) {
+  return STAGE_AUTO_MS.map((ms, i) => (i <= AUTO_MAX_STAGE ? order.createdAt + ms : null));
 }

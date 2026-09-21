@@ -60,7 +60,7 @@ export default function WelcomePage() {
         <button
           type="button"
           onClick={explore}
-          className="pressable rounded-full px-3 py-1.5 text-[14px] font-semibold text-ink-2 hover:bg-surface-2"
+          className="pressable rounded-full px-3 py-2.5 text-[14px] font-semibold text-ink-2 hover:bg-surface-2"
         >
           Pular
         </button>
@@ -82,8 +82,8 @@ export default function WelcomePage() {
                   "radial-gradient(110% 85% at 50% 100%, #ecdfc8 0%, #f6f1e4 55%, #fbf7ee 100%)",
               }}
             >
-              <div className="awning awning-edge absolute inset-x-0 top-0 h-7" />
-              <div className="px-4 pb-2 pt-10">{s.art}</div>
+              <div className="awning awning-edge absolute inset-x-0 top-0 h-10" />
+              <div className="px-4 pb-2 pt-12">{s.art}</div>
             </div>
             <motion.div
               initial={false}
@@ -110,12 +110,16 @@ export default function WelcomePage() {
             aria-selected={index === i}
             aria-label={`Slide ${i + 1}`}
             onClick={() => goTo(i)}
-            className="h-2 rounded-full transition-all duration-300"
-            style={{
-              width: index === i ? 24 : 8,
-              background: index === i ? "var(--leaf)" : "var(--line-strong)",
-            }}
-          />
+            className="flex h-8 items-center px-1"
+          >
+            <span
+              className="block h-2 rounded-full transition-all duration-300"
+              style={{
+                width: index === i ? 24 : 8,
+                background: index === i ? "var(--leaf)" : "var(--line-strong)",
+              }}
+            />
+          </button>
         ))}
       </div>
 

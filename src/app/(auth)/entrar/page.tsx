@@ -29,7 +29,7 @@ export default function LoginPage() {
     e.preventDefault();
     const errs: typeof errors = {};
     if (phone.replace(/\D/g, "").length < 10) errs.phone = "Digite um celular com DDD.";
-    if (password.length < 4) errs.password = "A senha tem pelo menos 4 caracteres.";
+    if (password.length < 6) errs.password = "A senha tem pelo menos 6 caracteres.";
     setErrors(errs);
     if (Object.keys(errs).length) return;
 

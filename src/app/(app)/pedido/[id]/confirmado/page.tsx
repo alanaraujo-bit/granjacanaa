@@ -35,7 +35,7 @@ export default function OrderConfirmedPage() {
 
   if (hydrated && !order) {
     return (
-      <main className="flex min-h-dvh flex-col items-center justify-center px-8 text-center">
+      <main className="flex flex-1 flex-col items-center justify-center px-8 text-center">
         <h1 className="font-display text-[22px] font-semibold text-ink">Pedido não encontrado</h1>
         <p className="mt-2 text-ink-2">Talvez ele tenha sido feito em outro aparelho.</p>
         <Button href="/inicio" className="mt-6">
@@ -48,7 +48,7 @@ export default function OrderConfirmedPage() {
   const win = order ? DELIVERY_WINDOWS.find((w) => w.id === order.delivery.slot) : undefined;
 
   return (
-    <main className="flex min-h-dvh flex-col pb-10">
+    <main className="flex flex-1 flex-col pb-10">
       {/* campo verde de sucesso */}
       <section
         className="relative overflow-hidden px-5 pb-14 text-center text-cream"

@@ -18,7 +18,7 @@ export default function OrdersPage() {
   const orders = useStore((s) => s.orders);
 
   return (
-    <main className="flex min-h-dvh flex-col pb-8">
+    <main className="flex flex-1 flex-col pb-8">
       <TopBar title="Meus pedidos" back={false} />
 
       {!hydrated ? (

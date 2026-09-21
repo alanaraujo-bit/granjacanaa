@@ -41,7 +41,7 @@ export function TopBar({
   return (
     <header
       className={`sticky top-0 z-30 flex h-[60px] items-center gap-2 px-4 ${
-        transparent ? "" : "bg-ground/85 backdrop-blur-md"
+        transparent ? "" : "bg-ground/92 backdrop-blur-md"
       }`}
       style={{
         paddingTop: "var(--safe-top)",

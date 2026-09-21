@@ -31,7 +31,7 @@ export function PriceSign({
     : {};
   return (
     <Tag className={`sign-tag tabular ${className}`} {...motionProps}>
-      <span style={{ fontSize: fs * 0.55, marginRight: 2, color: "var(--gold)" }}>R$</span>
+      <span style={{ fontSize: Math.max(11, fs * 0.55), marginRight: 2, color: "var(--gold)" }}>R$</span>
       <span style={{ fontSize: fs }}>{int}</span>
       <span style={{ fontSize: fs * 0.62, opacity: 0.9 }}>,{cents}</span>
     </Tag>
@@ -83,11 +83,11 @@ export function QtyStepper({
   size?: "sm" | "md" | "lg";
   allowRemove?: boolean;
 }) {
-  const h = size === "lg" ? 52 : size === "md" ? 44 : 36;
+  const h = size === "lg" ? 52 : size === "md" ? 48 : 44;
   const isMin = value <= min;
   return (
     <div
-      className="inline-flex items-center rounded-full border border-line-strong bg-surface p-1 shadow-card"
+      className="inline-flex items-center rounded-full border border-line-strong bg-surface p-0.5 shadow-card"
       style={{ height: h }}
     >
       <button

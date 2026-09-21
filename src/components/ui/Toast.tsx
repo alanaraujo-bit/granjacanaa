@@ -46,7 +46,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setItems((prev) => [...prev.slice(-2), { ...t, id }]);
     window.setTimeout(() => {
       setItems((prev) => prev.filter((i) => i.id !== id));
-    }, 2600);
+    }, 2100);
   }, []);
 
   const api = useMemo(() => ({ toast }), [toast]);

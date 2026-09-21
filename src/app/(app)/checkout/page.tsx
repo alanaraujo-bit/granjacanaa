@@ -89,7 +89,7 @@ export default function CheckoutPage() {
     if (draft.name.trim().split(" ").length < 2) e.name = "Digite nome e sobrenome.";
     if (draft.phone.replace(/\D/g, "").length < 10) e.phone = "Digite um celular com DDD.";
     if (!draft.address.street.trim()) e.street = "Informe a rua.";
-    if (!draft.address.number.trim()) e.number = "Nº";
+    if (!draft.address.number.trim()) e.number = "Informe o número.";
     if (!draft.address.district.trim()) e.district = "Informe o bairro.";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <main className="flex min-h-dvh flex-col pb-44">
+    <main className="flex flex-1 flex-col pb-44">
       <TopBar title="Finalizar pedido" backHref="/carrinho" />
 
       {/* passos */}
@@ -166,7 +166,7 @@ export default function CheckoutPage() {
         <AnimatePresence mode="wait" custom={dir} initial={false}>
           {step === 0 && (
             <motion.section key="s0" custom={dir} variants={slide} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.22 }}>
-              <div className="flex items-end justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
                 <h2 className="font-display text-[22px] font-semibold text-ink">Para quem e onde?</h2>
                 <button
                   type="button"
@@ -175,7 +175,7 @@ export default function CheckoutPage() {
                     setErrors({});
                     toast({ kind: "info", title: "Dados de exemplo preenchidos" });
                   }}
-                  className="pressable inline-flex h-8 items-center gap-1.5 rounded-full bg-gold-soft px-3 text-[12.5px] font-bold text-gold-ink"
+                  className="pressable inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-gold-soft px-3 text-[12.5px] font-bold text-gold-ink"
                 >
                   <Wand2 size={13} strokeWidth={2.5} /> Preencher exemplo
                 </button>
@@ -397,7 +397,7 @@ export default function CheckoutPage() {
               Continuar
             </Button>
           ) : (
-            <Button onClick={confirm} loading={placing} full variant="leaf" icon={<Sparkles size={20} />}>
+            <Button onClick={confirm} loading={placing} full icon={<Sparkles size={20} />}>
               {placing ? "Enviando pedido" : "Confirmar pedido"}
             </Button>
           )}

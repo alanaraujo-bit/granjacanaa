@@ -28,14 +28,21 @@ export default function ProductPage() {
   ).slice(0, 3);
 
   const add = () => {
+    if (added) {
+      router.push("/carrinho");
+      return;
+    }
     addToCart(product.id, qty);
     setAdded(true);
-    toast({ kind: "success", title: "Adicionado ao carrinho", description: `${qty}× ${product.name}` });
-    window.setTimeout(() => router.push("/carrinho"), 650);
+    toast({
+      kind: "success",
+      title: "Adicionado ao carrinho",
+      description: "Continue explorando ou toque para ver o carrinho.",
+    });
   };
 
   return (
-    <main className="flex min-h-dvh flex-col pb-32">
+    <main className="flex flex-1 flex-col pb-32">
       <div className="relative">
         <ProductImage product={product} size="hero" className="aspect-[5/4] w-full" />
         <div className="absolute inset-x-0 top-0">
@@ -44,7 +51,7 @@ export default function ProductPage() {
         {product.badge && (
           <Chip
             tone={product.badge === "mais-pedido" ? "gold" : product.badge === "melhor-preco" ? "leaf" : "egg"}
-            className="absolute bottom-4 left-5"
+            className="absolute bottom-10 left-5"
           >
             {BADGE_LABEL[product.badge]}
           </Chip>
@@ -61,7 +68,7 @@ export default function ProductPage() {
           </div>
           <div className="flex shrink-0 flex-col items-end gap-1 pt-1">
             <PriceSign value={product.price} size="lg" swing />
-            {product.compareAt && <Price value={product.compareAt} size={13} strike className="mr-1 mt-1" />}
+            {product.compareAt && <Price value={product.compareAt} size={14} strike className="mr-1 mt-1 !text-ink-2" />}
           </div>
         </div>
 
@@ -103,7 +110,7 @@ export default function ProductPage() {
           <motion.div className="flex-1" animate={added ? { scale: [1, 0.97, 1] } : {}}>
             <Button onClick={add} full icon={added ? <Check size={20} strokeWidth={3} /> : <ShoppingBasket size={20} />}
               className={added ? "!bg-leaf !text-cream" : ""}>
-              {added ? "Adicionado" : (
+              {added ? "Ver carrinho" : (
                 <span className="flex items-baseline gap-2">
                   Adicionar
                   <Price value={product.price * qty} size={16} className="opacity-80" />

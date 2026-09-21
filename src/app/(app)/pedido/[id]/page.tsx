@@ -36,7 +36,7 @@ export default function OrderTrackingPage() {
 
   if (hydrated && !order) {
     return (
-      <main className="flex min-h-dvh flex-col">
+      <main className="flex flex-1 flex-col">
         <TopBar title="Pedido" backHref="/pedidos" />
         <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
           <h1 className="font-display text-[22px] font-semibold text-ink">Pedido não encontrado</h1>
@@ -63,7 +63,7 @@ export default function OrderTrackingPage() {
   };
 
   return (
-    <main className="flex min-h-dvh flex-col pb-12">
+    <main className="flex flex-1 flex-col pb-12">
       <TopBar
         title={
           <span className="flex items-center gap-2">
@@ -296,7 +296,7 @@ export default function OrderTrackingPage() {
           <div className="min-w-0 flex-1">
             <p className="text-[12.5px] font-bold uppercase tracking-[0.1em] text-ink-3">Modo demonstração</p>
             <p className="text-[12.5px] leading-snug text-ink-3">
-              As etapas avançam sozinhas em poucos segundos — ou toque para adiantar.
+              As etapas avançam sozinhas; toque em Avançar para simular a entrega.
             </p>
           </div>
           <button

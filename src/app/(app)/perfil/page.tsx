@@ -76,7 +76,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <main className="flex min-h-dvh flex-col pb-8">
+    <main className="flex flex-1 flex-col pb-8">
       <TopBar title="Perfil" back={false} />
 
       {/* cartão do usuário */}
@@ -148,13 +148,15 @@ export default function ProfilePage() {
       </section>
 
       <div className="mx-5 mt-6 flex flex-col gap-2">
-        <button
-          type="button"
-          onClick={signOut}
-          className="pressable inline-flex h-12 items-center justify-center gap-2 rounded-[14px] border border-line-strong bg-surface text-[15px] font-semibold text-ink-2"
-        >
-          <LogOut size={17} /> Sair
-        </button>
+        {user?.mode === "account" && (
+          <button
+            type="button"
+            onClick={signOut}
+            className="pressable inline-flex h-12 items-center justify-center gap-2 rounded-[14px] border border-line-strong bg-surface text-[15px] font-semibold text-ink-2"
+          >
+            <LogOut size={17} /> Sair
+          </button>
+        )}
         <button
           type="button"
           onClick={reset}
