@@ -29,7 +29,11 @@ Registro persistente de progresso e decisões. Atualizado continuamente para per
 - [x] Detector impeccable (limpo) + polimento (lid da caixa, transições, not-found)
 - [x] DESIGN.md + README de apresentação
 - [x] Revisão independente (agente crítico) — 17 achados, 15 corrigidos e deployados
-- [ ] Verdict pass do revisor + deploy final
+- [x] Verdict pass do revisor: 11 resolvidos, 3 parciais → corrigidos (alvos ≥40px, erros acessíveis com foco, identidade do visitante a partir do pedido) + 2 novos achados corrigidos
+- [x] Deploy final em produção e push — https://granjacanaa.vercel.app
+
+## Entrega
+Versão de apresentação concluída, validada ponta a ponta no navegador (desktop + mobile) contra a produção. Roteiro de demo no README.md. Próxima fase (fora de escopo desta versão): painel administrativo, backend real (pedidos/pagamentos), notificações.
 
 ## Notas técnicas
 - `.app-frame` (CSS sem layer) sobrescreve utilities de background — usar `style` inline quando precisar de fundo diferente no frame.
