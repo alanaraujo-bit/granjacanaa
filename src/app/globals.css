@@ -1,26 +1,332 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Granja Canaã — tokens
+   Mundo visual: a banca da granja na feira. Letreiro pintado à mão,
+   toldo listrado, caixote de madeira, luz da manhã.
+------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* luz da manhã (fundo) */
+  --ground: #fbf7ee;
+  --surface: #ffffff;
+  --surface-2: #f3efe2;
+  --line: #e9e3d3;
+  --line-strong: #d5cfba;
+  --cream: #fbf6ea;
+
+  /* verde da marca */
+  --leaf: #2b6a3f;
+  --leaf-deep: #1e4d2c;
+  --leaf-ink: #143521;
+  --leaf-soft: #e1efe1;
+  --leaf-wash: #eef5ec;
+
+  /* dourado da marca */
+  --gold: #f2c14e;
+  --gold-deep: #e0ab2e;
+  --gold-ink: #6b4e0a;
+  --gold-soft: #fbefc9;
+
+  /* casca / texto */
+  --ink: #26201a;
+  --ink-2: #5e554a;
+  --ink-3: #8c8273;
+
+  /* ovo */
+  --egg: #c98b57;
+  --egg-soft: #f6e6d3;
+
+  /* semântico */
+  --danger: #c0392b;
+  --danger-soft: #fbe4e1;
+  --info-soft: #e6eef8;
+
+  --radius-xl: 24px;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+
+  --shadow-card: 0 1px 2px rgba(38, 32, 26, 0.05), 0 8px 24px -12px rgba(38, 32, 26, 0.18);
+  --shadow-float: 0 12px 32px -8px rgba(20, 53, 33, 0.35), 0 2px 6px rgba(38, 32, 26, 0.08);
+  --shadow-gold: 0 10px 24px -8px rgba(224, 171, 46, 0.6);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --app-width: 430px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-cream: var(--cream);
+  --color-leaf: var(--leaf);
+  --color-leaf-deep: var(--leaf-deep);
+  --color-leaf-ink: var(--leaf-ink);
+  --color-leaf-soft: var(--leaf-soft);
+  --color-leaf-wash: var(--leaf-wash);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-egg: var(--egg);
+  --color-egg-soft: var(--egg-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info-soft: var(--info-soft);
+
+  --font-display: var(--font-display), "Fredoka", system-ui, sans-serif;
+  --font-sans: var(--font-body), "Figtree", system-ui, sans-serif;
+
+  --radius-xl: var(--radius-xl);
+  --radius-lg: var(--radius-lg);
+  --radius-md: var(--radius-md);
+  --radius-sm: var(--radius-sm);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+  --shadow-gold: var(--shadow-gold);
+
+  --ease-out: var(--ease-out);
+  --ease-spring: var(--ease-spring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ------------------------------------------------------------------
+   Comportamento de app nativo
+------------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overscroll-behavior: none;
+  background: var(--ground);
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea,
+select,
+[data-selectable],
+[data-selectable] * {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* sem atraso de duplo toque / zoom acidental nos controles */
+button,
+a,
+label,
+input,
+select,
+textarea,
+[role="button"],
+[role="tab"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* sem scrollbar de navegador */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+/* iOS: inputs com 16px evitam zoom no foco */
+input,
+textarea,
+select {
+  font-size: 16px;
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--gold-soft);
+  color: var(--ink);
+}
+input,
+textarea {
+  caret-color: var(--leaf);
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--leaf) 55%, white);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ------------------------------------------------------------------
+   Casca do app: coluna centralizada no desktop, tela cheia no celular
+------------------------------------------------------------------ */
+.app-frame {
+  position: relative;
+  width: 100%;
+  max-width: var(--app-width);
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: var(--ground);
+}
+
+@media (min-width: 640px) {
+  body {
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #e4efe0 0%, transparent 60%),
+      repeating-linear-gradient(90deg, #eef0e3 0 22px, #f7f5ea 22px 44px);
+  }
+  .app-frame {
+    box-shadow:
+      0 0 0 1px rgba(58, 42, 27, 0.08),
+      0 30px 80px -30px rgba(58, 42, 27, 0.4);
+  }
+}
+
+/* elementos fixos presos à coluna do app */
+.app-fixed {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--app-width);
+}
+
+/* ------------------------------------------------------------------
+   Materiais
+------------------------------------------------------------------ */
+.awning {
+  background-image: repeating-linear-gradient(90deg, var(--leaf) 0 28px, #ffffff 28px 56px);
+}
+
+.awning-edge {
+  /* recorte em ondas (uma onda por listra) */
+  -webkit-mask:
+    linear-gradient(#000, #000) 0 0 / 100% calc(100% - 12px) no-repeat,
+    radial-gradient(12px at 50% calc(100% - 12px), #000 98%, transparent 100%) 0 0 / 28px 100% repeat-x;
+  mask:
+    linear-gradient(#000, #000) 0 0 / 100% calc(100% - 12px) no-repeat,
+    radial-gradient(12px at 50% calc(100% - 12px), #000 98%, transparent 100%) 0 0 / 28px 100% repeat-x;
+}
+
+.paper {
+  background-color: var(--surface);
+  background-image: radial-gradient(rgba(58, 42, 27, 0.035) 0.6px, transparent 0.7px);
+  background-size: 6px 6px;
+}
+
+.kraft {
+  background-color: var(--kraft);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 5px),
+    radial-gradient(rgba(0, 0, 0, 0.06) 0.7px, transparent 0.8px);
+  background-size: auto, 5px 5px;
+}
+
+.sign-tag {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  background: var(--leaf);
+  color: var(--cream);
+  border-radius: 10px;
+  padding: 5px 10px 6px 14px;
+  transform: rotate(-2.5deg);
+  box-shadow:
+    inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+    0 3px 8px -3px rgba(20, 53, 33, 0.5);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.sign-tag::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(242, 193, 78, 0.9);
+  box-shadow: inset 0 0.5px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* botões com curso de pressão */
+.pressable {
+  transition:
+    transform 160ms var(--ease-out),
+    box-shadow 160ms var(--ease-out),
+    background-color 160ms var(--ease-out),
+    opacity 160ms;
+}
+.pressable:active {
+  transform: scale(0.97) translateY(1px);
+}
+
+/* skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, #efeadc 25%, #f7f3e8 50%, #efeadc 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: 12px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
