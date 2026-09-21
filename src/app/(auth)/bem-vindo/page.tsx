@@ -74,9 +74,9 @@ export default function WelcomePage() {
         style={{ scrollbarWidth: "none" }}
       >
         {SLIDES.map((s, i) => (
-          <section key={i} className="flex w-full shrink-0 snap-center flex-col px-5">
+          <section key={i} className="flex w-full shrink-0 snap-center flex-col justify-center px-5 py-2">
             <div
-              className="relative mx-auto mt-2 w-full max-w-[360px] overflow-hidden rounded-[28px]"
+              className="relative mx-auto w-full max-w-[360px] overflow-hidden rounded-[28px]"
               style={{
                 background:
                   "radial-gradient(110% 85% at 50% 100%, #ecdfc8 0%, #f6f1e4 55%, #fbf7ee 100%)",

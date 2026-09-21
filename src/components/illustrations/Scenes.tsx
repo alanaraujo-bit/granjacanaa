@@ -68,11 +68,11 @@ export function Carton({
 
       {/* tampa aberta */}
       <polygon
-        points={`${left - pad + 14},22 ${right + pad - 14},22 ${right + pad - 2},122 ${left - pad + 2},122`}
+        points={`${left - pad + 14},34 ${right + pad - 14},34 ${right + pad - 2},122 ${left - pad + 2},122`}
         fill={`url(#${id}-lid)`}
       />
       <polygon
-        points={`${left - pad + 24},34 ${right + pad - 24},34 ${right + pad - 12},112 ${left - pad + 12},112`}
+        points={`${left - pad + 24},44 ${right + pad - 24},44 ${right + pad - 12},112 ${left - pad + 12},112`}
         fill="none"
         stroke={KRAFT.ink}
         strokeOpacity="0.18"
@@ -80,10 +80,10 @@ export function Carton({
         strokeDasharray="3 4"
       />
       <g fontFamily="var(--font-display), sans-serif" fontWeight="700" textAnchor="middle" fill={KRAFT.ink}>
-        <text x={cx} y="64" fontSize="13" letterSpacing="1.5" opacity="0.85">
+        <text x={cx} y="72" fontSize="12" letterSpacing="1.5" opacity="0.85">
           GRANJA CANAÃ
         </text>
-        <text x={cx} y="86" fontSize="17" opacity="0.9">
+        <text x={cx} y="94" fontSize="17" opacity="0.9">
           {count} ovos caipiras
         </text>
       </g>

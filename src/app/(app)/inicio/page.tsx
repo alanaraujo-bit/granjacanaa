@@ -15,7 +15,7 @@ import { SectionTitle, Skeleton } from "@/components/ui/Primitives";
 const TRUST = [
   { Icon: Leaf, title: "Galinhas soltas", text: "criadas no pasto" },
   { Icon: Sunrise, title: "Colheita do dia", text: "embalados hoje" },
-  { Icon: Truck, title: "Entrega combinada", text: "no seu horário" },
+  { Icon: Truck, title: "Hora marcada", text: "você escolhe" },
 ];
 
 export default function HomePage() {
