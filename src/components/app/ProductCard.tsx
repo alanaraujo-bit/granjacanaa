@@ -19,7 +19,7 @@ export function ProductImage({
   className?: string;
   size?: "card" | "hero" | "thumb";
 }) {
-  const pad = size === "hero" ? "p-4" : size === "thumb" ? "p-1" : "p-2";
+  const pad = size === "hero" ? "px-6 pb-10 pt-14" : size === "thumb" ? "p-1" : "p-2";
   return (
     <div
       className={`relative overflow-hidden ${className}`}
